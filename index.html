@@ -66,6 +66,7 @@
 						animation: google.maps.Animation.DROP,
 						id: i
 					});
+					marker.addListener('click', toggleBounce);
 					//Push the marker to the marker array
 					//markers.push(marker);
 					vm.locationList()[i].marker = marker;
@@ -77,6 +78,14 @@
 					});
 				}
 				map.fitBounds(bounds);
+
+				function toggleBounce() {
+        			if (marker.getAnimation() !== null) {
+          				marker.setAnimation(null);
+        			} else {
+          				marker.setAnimation(google.maps.Animation.BOUNCE);
+      	  			}
+      			}
 			}
 
 			//Function that populates the info window upon clicking. Only one window can open at a time.
