@@ -44,7 +44,7 @@
 		</div>
 		<div id="map"></div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
-		<script>
+		<script type="text/javascript">
 			var map;
 
 			// Blank array for all the markers
@@ -98,10 +98,15 @@
 				map.fitBounds(bounds);
 
 				function toggleBounce() {
-        			if (marker.getAnimation() !== null) {
-          				marker.setAnimation(null);
+					var self = this;
+
+        			if (self.getAnimation() !== null) {
+          				self.setAnimation(null); // stopping the animation on a second click
         			} else {
-          				marker.setAnimation(google.maps.Animation.BOUNCE);
+          				self.setAnimation(google.maps.Animation.BOUNCE);
+          				setTimeout(function(){
+          					self.setAnimation(null);
+          				}, 1500);
       	  			}
       			}
 			}
