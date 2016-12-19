@@ -2,6 +2,11 @@
 
 This project consists of a map of my neighborhood, in Gettysburg, PA. It has several points of interest, which are all my favorite places to eat and drink in town. Each pinpoint on the map has a pop up window of additional information, and the marker animates upon clicking. There is a search functionality that filters the list of locations. This app is responsive and is built using Knockout and separation of concerns.
 
+##Responsiveness
+
+Props to StackOverflow for the help getting the map responsive
+http://stackoverflow.com/questions/15421369/responsive-google-map
+
 ##The map
 
 Props to Udacity's "Getting Started with the APIs" course for the assistance in getting the map, markers, and infowindows established!
