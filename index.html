@@ -137,14 +137,69 @@
 				google.maps.event.trigger(ourMarker, toggleBounce)
 			}
 
+
+			var googleError = function() {
+				alert('Google Maps is not currently available')
+			};
+
+			//google.maps.event.trigger(location.marker, 'click');
+
 			var vm = new viewModel();
 			ko.applyBindings(vm);
 
 			$( document ).ready(function(){
 			});
 
+			//Attempting to load Yelp API
+			function nonce_generate() {
+			        return (Math.floor(Math.random() * 1e12).toString());
+			    };
+
+			function getYelpData(item){
+			    var yelpID = item.yelpID();
+
+			    //var yelp_url = 'https://api.yelp.com/v2/business/' + yelpID;
+			    var yelp_url = YELP_BASE_URL + 'business/' + self.selected_place().Yelp.business_id;
+
+
+			    var auth = {
+			                consumerKey : "L7ggInri9G0tCkmKmjf7aw",
+			                consumerSecret : "87CtC0_r6MgY31pVxyw89M9XKM8",
+			                accessToken : "ZH_WIQdU26QTB3E1N0TCk75d1ww7qo_g",
+			                accessTokenSecret : "3AZO_Hj67qAp-zqXEuAOnDlIuFo"
+			    };
+
+			    var parameters = {
+
+			        oauth_consumer_key: YELP_KEY,
+			        oauth_token: YELP_TOKEN,
+			        oauth_nonce: nonce_generate(),
+			        oauth_timestamp: Math.floor(Date.now()/1000),
+			        oauth_signature_method: 'HMAC-SHA1',
+			        oath_version: '1.0',
+			        callback: 'cb'
+			    };
+
+			    var encodedSignature = oauthSignature.generate('GET',yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
+			    parameters.oauth_signature = encodedSignature;
+
+			    var settings = {
+			      url: yelp_url,
+			      data: parameters,
+			      cache: true,
+			      dataType: 'jsonp',
+			      success: function(results) {
+			        // Do stuff with results
+			      },
+			      error: function() {
+			        // Do stuff on fail
+			      }
+    };
+
 		</script>
 
+		<script type="text/javascript" src="library/jsOAuth-1.3.7.min.js"></script>
+		<script src="app.js"></script>
 		<script async defer
 			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbwxLIzCPXvi8_3oGASHWYrvB0i5A7ahI&v=3&callback=initMap">
 		</script>
