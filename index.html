@@ -32,13 +32,43 @@
 		<div id="map"></div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+		<script src="library/oauth-signature.min.js"></script>
+
+
 		<script type="text/javascript">
+
+// START WISH ME LUCK
+
+			var YELP_KEY = "L7ggInri9G0tCkmKmjf7aw",
+				YELP_TOKEN = "ZH_WIQdU26QTB3E1N0TCk75d1ww7qo_g",
+				YELP_KEY_SECRET = "87CtC0_r6MgY31pVxyw89M9XKM8",
+				YELP_TOKEN_SECRET = "3AZO_Hj67qAp-zqXEuAOnDlIuFo",
+				YELP_BASE_URL = "http://api.yelp.com/v2/search";
+
+			function nonce_generate() {
+			    return (Math.floor(Math.random() * 1e12).toString());
+			};
+
+			var yelp_url = YELP_BASE_URL;
+
+
+
+
+
+
+// END WISH ME LUCK
+
+
+
+
 			var map;
 
 			// Blank array for all the markers
 			var markers = [];
 
-			// Marker points for the map
+			//Marker points for the map
+
 			var locations = [
 				{title: 'The Ragged Edge', location: {lat: 39.830697, lng: -77.233677}},
 				{title: 'The Ugly Mug', location: {lat: 39.833721, lng: -77.231317}},
@@ -55,6 +85,9 @@
 					center: {lat: 39.8309, lng: -77.2311},
 					zoom: 16
 				});
+
+
+				console.log("inside initMAp "+vm.locationList().length);
 
 				var largeInfowindow = new google.maps.InfoWindow();
 				var bounds = new google.maps.LatLngBounds();
@@ -126,9 +159,66 @@
 				var self = this;
 				self.locationList = ko.observableArray();
 
-				locations.forEach(function(location) {
-					self.locationList.push(location);
-				});
+
+
+
+					function getYelpData_list(){
+
+					    var parameters = {
+					        oauth_consumer_key: YELP_KEY,
+					        oauth_token: YELP_TOKEN,
+					        oauth_nonce: nonce_generate(),
+					        oauth_timestamp: Math.floor(Date.now()/1000),
+					        oauth_signature_method: 'HMAC-SHA1',
+					        oath_version: '1.0',
+					        callback: 'cb',
+					        category_filter: 'bagels',
+					        //radius_filter: 16093.4, // 10 miles
+					        //term: 'bakery',
+					        location: 'Gettysburg PA',
+					        sort: '0'
+					        //limit: 1
+					    };
+
+					    var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
+					    parameters.oauth_signature = encodedSignature;
+
+					    var settings = {
+					      url: yelp_url,
+					      data: parameters,
+					      cache: true,
+					      dataType: 'jsonp',
+					      success: function(results) {
+					        // Do stuff with results
+					        // console.log(results);
+
+							if (results.businesses.length > 0) {
+
+				                  $.each(results.businesses, function(i, item) {
+
+				                  		self.locationList.push({title: item.name, location: {lat: item.location.coordinate.latitude, lng: item.location.coordinate.longitude} });
+
+				                  });
+
+			                }
+
+
+					      },
+					      error: function() {
+					        // Do stuff on fail
+					        console.log("Yelp API request failed");
+					      }
+					   };
+					   $.ajax(settings);
+					}
+					getYelpData_list();
+
+					console.log('Location List '+self.locationList);
+
+
+				// locations.forEach(function(location) {
+				// 	self.locationList.push(location);
+				// });
 			}
 
 			function controlMarker(location){
@@ -150,51 +240,6 @@
 			$( document ).ready(function(){
 			});
 
-			//Attempting to load Yelp API
-			function nonce_generate() {
-			        return (Math.floor(Math.random() * 1e12).toString());
-			    };
-
-			function getYelpData(item){
-			    var yelpID = item.yelpID();
-
-			    //var yelp_url = 'https://api.yelp.com/v2/business/' + yelpID;
-			    var yelp_url = YELP_BASE_URL + 'business/' + self.selected_place().Yelp.business_id;
-
-
-			    var auth = {
-			                consumerKey : "L7ggInri9G0tCkmKmjf7aw",
-			                consumerSecret : "87CtC0_r6MgY31pVxyw89M9XKM8",
-			                accessToken : "ZH_WIQdU26QTB3E1N0TCk75d1ww7qo_g",
-			                accessTokenSecret : "3AZO_Hj67qAp-zqXEuAOnDlIuFo"
-			    };
-
-			    var parameters = {
-
-			        oauth_consumer_key: YELP_KEY,
-			        oauth_token: YELP_TOKEN,
-			        oauth_nonce: nonce_generate(),
-			        oauth_timestamp: Math.floor(Date.now()/1000),
-			        oauth_signature_method: 'HMAC-SHA1',
-			        oath_version: '1.0',
-			        callback: 'cb'
-			    };
-
-			    var encodedSignature = oauthSignature.generate('GET',yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
-			    parameters.oauth_signature = encodedSignature;
-
-			    var settings = {
-			      url: yelp_url,
-			      data: parameters,
-			      cache: true,
-			      dataType: 'jsonp',
-			      success: function(results) {
-			        // Do stuff with results
-			      },
-			      error: function() {
-			        // Do stuff on fail
-			      }
-    };
 
 		</script>
 
