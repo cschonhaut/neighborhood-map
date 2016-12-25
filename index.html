@@ -20,7 +20,6 @@
 						Expand
 					</button>
 				</h3>
-	<!-- <a href="#" id="menu"> <img src="img/menu.png" alt="Menu" width="40" height="35"></a>-->
 	 			<form>
 			  		<input type="text" name="search">
 				</form>
@@ -28,7 +27,7 @@
 				<h3>Locations:</h3>
 				<ul class="sidebar-list"
 					data-bind="foreach: locationList" id="locationList">
-						<li data-bind="text: title, click: controlMarker"></li>
+						<li data-bind="text: title, address, phone, click: $parent.controlMarker"></li>
 				</ul>
 			</div>
 

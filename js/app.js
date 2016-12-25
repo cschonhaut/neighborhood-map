@@ -8,7 +8,6 @@
 	});
 	var largeInfowindow = new google.maps.InfoWindow();
 	var bounds = new google.maps.LatLngBounds();
-	console.log(vm);
 	//Below uses the location arrary to create an array of markers on the init function
 	for (var i = 0; i < vm.locationList().length; i++) {
 		//Get position from location array
@@ -126,10 +125,11 @@
 			self.locationList.push(location);
 		});
 	}
+
 	function controlMarker(location){
-		//alert('control mark this');
-		var ourMarker = google.maps.getMarker('The Ragged Edge')
-		google.maps.event.trigger(ourMarker, toggleBounce)
+		var ourMarker = google.maps.getMarker();
+		//google.maps.event.trigger(ourMarker, toggleBounce)
+		google.maps.event.trigger(location.marker, 'click');
 	}
 	var vm = new viewModel();
 	ko.applyBindings(vm);
