@@ -3,21 +3,21 @@
 This project consists of a map of my neighborhood, in Gettysburg, PA. It has several points of interest, which are all my favorite places to eat and drink in town. Each pinpoint on the map has a pop up window of additional information, and the marker animates upon clicking. There is a search functionality that filters the list of locations. This app is responsive and is built using Knockout and separation of concerns.
 
 ##Usage
-Visit the live site hosted here:
-Or clone the repo here: https://github.com/cschonhaut/neighborhood-map
+* Visit the live site hosted here:
+* Or clone the repo here: https://github.com/cschonhaut/neighborhood-map
 
 ##Languages / Tools Used
-Knockout JS
-jQuery
-Yelp API
+* Knockout JS
+* jQuery
+* Yelp API
 
 ##Credits to Sources Used
 
 ###Responsiveness
 
 Props to the following resources that I referenced in order to get my project fully responsive.
-http://stackoverflow.com/questions/15421369/responsive-google-map
-https://discussions.udacity.com/t/not-getting-flexbox-to-work-on-my-project/205689
+* http://stackoverflow.com/questions/15421369/responsive-google-map
+* https://discussions.udacity.com/t/not-getting-flexbox-to-work-on-my-project/205689
 
 
 ###The map
