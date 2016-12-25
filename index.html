@@ -2,10 +2,8 @@
 	<head lang='en'>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
- -->		<title>Places to Eat and Drink in Gettysburg</title>
-<!-- 		<link href="css/bootstrap.min.css" rel="stylesheet">
- -->		<link href="css/mystyles.css" rel="stylesheet">
+ 		<title>Places to Eat and Drink in Gettysburg</title>
+		<link href="css/mystyles.css" rel="stylesheet">
 		<style>
 			html,
 			body
@@ -15,35 +13,34 @@
 		</style>
 	</head>
 	<body>
-	<div class="container">
-		<div class="row">
-			<div class="col-3">
-	<!-- 			<a href="#" id="menu"> <img src="img/menu.png" alt="Menu" width="40" height="35"></a> -->
-				<form>
-			  		<h3>Search:</h3><br>
+		<main>
+			<div class="sidebar">
+				<h3>Search:
+					<button class="sidebar-open">
+						Expand
+					</button>
+				</h3>
+	<!-- <a href="#" id="menu"> <img src="img/menu.png" alt="Menu" width="40" height="35"></a>-->
+	 			<form>
 			  		<input type="text" name="search">
 				</form>
+
 				<h3>Locations:</h3>
-					<ul data-bind="foreach: locationList" id="locationList">
+				<ul class="sidebar-list"
+					data-bind="foreach: locationList" id="locationList">
 						<li data-bind="text: title, click: controlMarker"></li>
-					</ul>
+				</ul>
 			</div>
-		</div>
 
-		<div class="row">
-			<div class="col-9">
-				<div id="map"></div>
-			</div>
-		</div>
+			<div id="map"></div>
 
+	</main>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="library/oauth-signature.min.js"></script>
-		// <script src="js/bootstrap.min.js"></script>
 		<script src="js/app.js"></script>
 		<script async defer
 			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbwxLIzCPXvi8_3oGASHWYrvB0i5A7ahI&v=3&callback=initMap">
 		</script>
-	</div>
 	</body>
 </html>

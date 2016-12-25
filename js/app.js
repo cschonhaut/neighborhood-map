@@ -14,11 +14,16 @@
 		//Get position from location array
 		var position = vm.locationList()[i].location;
 		var title = vm.locationList()[i].title;
+		var address = vm.locationList()[i].address;
+		var phone = vm.locationList()[i].phone;
+
 		//Create a marker for each location, and put into markers array
 		var marker = new google.maps.Marker({
 			map: map,
 			position: position,
 			title: title,
+			address: address,
+			phone: phone,
 			animation: google.maps.Animation.DROP,
 			id: i
 		});
@@ -44,15 +49,74 @@
 	});
 }
 
+	$('.sidebar-open').click(function (e) {
+  	$('.sidebar-list').toggleClass('expand');
+	});
+
 	var locations = [
-		{title: 'The Ragged Edge', location: {lat: 39.830697, lng: -77.233677}},
-		{title: 'The Ugly Mug', location: {lat: 39.833721, lng: -77.231317}},
-		{title: 'Garryowen Irish Mub', location: {lat: 39.830703, lng: -77.234127}},
-		{title: 'Blue and Gray', location: {lat: 39.830495, lng: -77.230845}},
-		{title: 'The Pub', location: {lat: 39.830361, lng: -77.231099}},
-		{title: 'Sydney Willoughby Run', location: {lat: 39.811368, lng: -77.225978}},
-		{title: 'Tommys Pizza', location: {lat: 39.822148, lng: -77.232845}},
-		{title: 'La Bella Italia', location: {lat: 39.832968, lng: -77.223382}}
+		{
+			title: 'The Ragged Edge Coffee House',
+			location: {lat: 39.830697, lng: -77.233677},
+			address: '110 Chambersburg St.',
+			phone: '717-334-4464',
+			yelpID: 'the-ragged-edge-coffee-house-gettysburg'
+		},
+
+		{
+			title: 'The Ugly Mug Cafe',
+			location: {lat: 39.833721, lng: -77.231317},
+			address: '168 Carlisle St.',
+			phone: '717-398-2011',
+			yelpID: 'the-ugly-mug-cafe-at-cockles-corner-gettysburg'
+		},
+
+		{
+			title: 'Garryowen Irish Mub',
+			location: {lat: 39.830703, lng: -77.234127},
+			address: '126 Chambersburg St.',
+			phone: '717-337-2719',
+			yelpID: 'the-garryowen-irish-pub-gettysburg'
+		},
+
+		{
+			title: 'Blue and Gray Bar & Grill',
+			location: {lat: 39.830495, lng: -77.230845},
+			address: '2 Baltimore St.',
+			phone: '717-334-1999',
+			yelpID: 'blue-and-gray-bar-and-grill-gettysburg'
+		},
+
+		{
+			title: 'The Pub',
+			location: {lat: 39.830361, lng: -77.231099},
+			address: '2 Lincoln Sq.',
+			phone: '717-334-7100',
+			yelpID: 'the-pub-and-restaurant-gettysburg'
+		},
+
+		{
+			title: 'Sydney Willoughby Run',
+			location: {lat: 39.811368, lng: -77.225978},
+			address: '730 Chambersburg Rd.',
+			phone: '717-334-3774',
+			yelpID: 'sidney-willoughby-run-gettysburg'
+		},
+
+		{
+			title: 'Tommys Pizza',
+			location: {lat: 39.822148, lng: -77.232845},
+			address: '105 Steinwehr Ave.',
+			phone: '717-334-4721',
+			yelpID: 'tommys-pizza-gettysburg'
+		},
+
+		{
+			title: 'La Bella Italia',
+			location: {lat: 39.832968, lng: -77.223382},
+			address: '402 York St.',
+			phone: '717-334-1978',
+			yelpID: 'la-bella-italia-gettysburg'
+		}
 	];
 
 	function viewModel() {
@@ -97,3 +161,40 @@
 			});
 		}
 	}
+
+// Yelp Functionality
+
+// function nonce_generate() {
+//     return (Math.floor(Math.random() * 1e12).toString());
+// };
+
+// function getYelpData(item){
+//     var yelpID = item.yelpID();
+//     var auth = {
+//                 yelp_key = "L7ggInri9G0tCkmKmjf7aw",
+// 				yelp_token = "ZH_WIQdU26QTB3E1N0TCk75d1ww7qo_g",
+// 				yelp_key_secret = "87CtC0_r6MgY31pVxyw89M9XKM8",
+// 				yelp_token_secret = "3AZO_Hj67qAp-zqXEuAOnDlIuFo",
+//     };
+
+//     var yelp_url = "http://api.yelp.com/v2/search" + yelpID;
+
+//     var parameters = {
+//     oauth_consumer_key: yelp_key,
+//     oauth_token: yelp_token,
+//     oauth_nonce: nonce_generate(),
+//     oauth_timestamp: Math.floor(Date.now()/1000),
+//     oauth_signature_method: 'HMAC-SHA1',
+//     oath_version: '1.0',
+//     callback: 'cb',
+//     category_filter: 'bagels',
+//     // radius_filter: 16093.4, // 10 miles
+//     // term: 'bakery',
+//     // location: 'Gettysburg PA',
+//     // sort: '0'
+//     // limit: 1
+// 	};
+
+// 	var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
+//     parameters.oauth_signature = encodedSignature;
+

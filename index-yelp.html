@@ -40,17 +40,17 @@
 
 // START WISH ME LUCK
 
-			var YELP_KEY = "L7ggInri9G0tCkmKmjf7aw",
-				YELP_TOKEN = "ZH_WIQdU26QTB3E1N0TCk75d1ww7qo_g",
-				YELP_KEY_SECRET = "87CtC0_r6MgY31pVxyw89M9XKM8",
-				YELP_TOKEN_SECRET = "3AZO_Hj67qAp-zqXEuAOnDlIuFo",
-				YELP_BASE_URL = "http://api.yelp.com/v2/search";
+			// var YELP_KEY = "L7ggInri9G0tCkmKmjf7aw",
+			// 	YELP_TOKEN = "ZH_WIQdU26QTB3E1N0TCk75d1ww7qo_g",
+			// 	YELP_KEY_SECRET = "87CtC0_r6MgY31pVxyw89M9XKM8",
+			// 	YELP_TOKEN_SECRET = "3AZO_Hj67qAp-zqXEuAOnDlIuFo",
+			// 	YELP_BASE_URL = "http://api.yelp.com/v2/search";
 
-			function nonce_generate() {
-			    return (Math.floor(Math.random() * 1e12).toString());
-			};
+			// function nonce_generate() {
+			//     return (Math.floor(Math.random() * 1e12).toString());
+			// };
 
-			var yelp_url = YELP_BASE_URL;
+			// var yelp_url = YELP_BASE_URL;
 
 
 
@@ -162,26 +162,26 @@
 
 
 
-					function getYelpData_list(){
+					// function getYelpData_list(){
 
-					    var parameters = {
-					        oauth_consumer_key: YELP_KEY,
-					        oauth_token: YELP_TOKEN,
-					        oauth_nonce: nonce_generate(),
-					        oauth_timestamp: Math.floor(Date.now()/1000),
-					        oauth_signature_method: 'HMAC-SHA1',
-					        oath_version: '1.0',
-					        callback: 'cb',
-					        category_filter: 'bagels',
-					        //radius_filter: 16093.4, // 10 miles
-					        //term: 'bakery',
-					        location: 'Gettysburg PA',
-					        sort: '0'
-					        //limit: 1
-					    };
+					//     var parameters = {
+					//         oauth_consumer_key: YELP_KEY,
+					//         oauth_token: YELP_TOKEN,
+					//         oauth_nonce: nonce_generate(),
+					//         oauth_timestamp: Math.floor(Date.now()/1000),
+					//         oauth_signature_method: 'HMAC-SHA1',
+					//         oath_version: '1.0',
+					//         callback: 'cb',
+					//         category_filter: 'bagels',
+					//         //radius_filter: 16093.4, // 10 miles
+					//         //term: 'bakery',
+					//         location: 'Gettysburg PA',
+					//         sort: '0'
+					//         //limit: 1
+					//     };
 
-					    var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
-					    parameters.oauth_signature = encodedSignature;
+					    // var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
+					    // parameters.oauth_signature = encodedSignature;
 
 					    var settings = {
 					      url: yelp_url,
