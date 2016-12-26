@@ -194,7 +194,7 @@ function getYelpData(){
 				yelp_token_secret: "3AZO_Hj67qAp-zqXEuAOnDlIuFo",
     };
 
-    var yelp_url = "http://api.yelp.com/v2/search" + yelpID;
+    var yelp_url = "http://api.yelp.com/v2/business" + yelpID;
 
     var parameters = {
     oauth_consumer_key: yelp_key,
