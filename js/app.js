@@ -137,8 +137,9 @@
 
 	// marker animation upon list click
 	function controlMarker(location){
-		var ourMarker = google.maps.getMarker();
+		//var ourMarker = google.maps.getMarker();
 		//google.maps.event.trigger(ourMarker, toggleBounce)
+		console.log(location);
 		google.maps.event.trigger(location.marker, 'click');
 	}
 	var vm = new viewModel();
@@ -180,70 +181,70 @@
 
 // Yelp Functionality
 
-// function nonce_generate() {
-//     return (Math.floor(Math.random() * 1e12).toString());
-// };
+function nonce_generate() {
+    return (Math.floor(Math.random() * 1e12).toString());
+};
 
-// function getYelpData(item){
-//     var yelpID = item.yelpID();
-//     var auth = {
-//              yelp_key = "L7ggInri9G0tCkmKmjf7aw",
-// 				yelp_token = "ZH_WIQdU26QTB3E1N0TCk75d1ww7qo_g",
-// 				yelp_key_secret = "87CtC0_r6MgY31pVxyw89M9XKM8",
-// 				yelp_token_secret = "3AZO_Hj67qAp-zqXEuAOnDlIuFo",
-//     };
+function getYelpData(item){
+    var yelpID = item.yelpID();
+    var auth = {
+             yelp_key: "L7ggInri9G0tCkmKmjf7aw",
+				yelp_token: "ZH_WIQdU26QTB3E1N0TCk75d1ww7qo_g",
+				yelp_key_secret: "87CtC0_r6MgY31pVxyw89M9XKM8",
+				yelp_token_secret: "3AZO_Hj67qAp-zqXEuAOnDlIuFo",
+    };
 
-//     var yelp_url = "http://api.yelp.com/v2/search" + yelpID;
+    var yelp_url = "http://api.yelp.com/v2/search" + yelpID;
 
-//     var parameters = {
-//     oauth_consumer_key: yelp_key,
-//     oauth_token: yelp_token,
-//     oauth_nonce: nonce_generate(),
-//     oauth_timestamp: Math.floor(Date.now()/1000),
-//     oauth_signature_method: 'HMAC-SHA1',
-//     oath_version: '1.0',
-//     callback: 'cb',
-//     category_filter: 'bagels',
-//     // radius_filter: 16093.4, // 10 miles
-//     // term: 'food',
-//     // location: 'Gettysburg PA',
-//     // sort: '0'
-//     // limit: 1
-// 	};
+    var parameters = {
+    oauth_consumer_key: yelp_key,
+    oauth_token: yelp_token,
+    oauth_nonce: nonce_generate(),
+    oauth_timestamp: Math.floor(Date.now()/1000),
+    oauth_signature_method: 'HMAC-SHA1',
+    oath_version: '1.0',
+    callback: 'cb',
+    category_filter: 'bagels',
+    // radius_filter: 16093.4, // 10 miles
+    // term: 'food',
+    // location: 'Gettysburg PA',
+    // sort: '0'
+    // limit: 1
+	};
 
-// 	var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
-//     parameters.oauth_signature = encodedSignature;
+	var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
+    parameters.oauth_signature = encodedSignature;
 
-// var settings = {
-// 		      url: yelp_url,
-// 		      data: parameters,
-// 		      cache: true,
-// 		      dataType: 'jsonp',
-// 		      success: function(results) {
-// 		        // Do stuff with results
-// 		        // console.log(results);
+	var settings = {
+		      url: yelp_url,
+		      data: parameters,
+		      cache: true,
+		      dataType: 'jsonp',
+		      success: function(results) {
+		        // Do stuff with results
+		        // console.log(results);
 
-// 				if (results.businesses.length > 0) {
+				if (results.businesses.length > 0) {
 
-// 	                  $.each(results.businesses, function(i, item) {
+	                  $.each(results.businesses, function(i, item) {
 
-// 	                  		self.locationList.push({title: item.name, location: {lat: item.location.coordinate.latitude, lng: item.location.coordinate.longitude} });
+	                  		self.locationList.push({title: item.name, location: {lat: item.location.coordinate.latitude, lng: item.location.coordinate.longitude} });
 
-// 	                  });
+	                  });
 
-//                 }
+                }
 
 
-// 		      },
-// 		      error: function() {
-// 		        // Do stuff on fail
-// 		        console.log("Yelp API request failed");
-// 		      }
-// 		   };
-// 		   $.ajax(settings);
-// 		}
-// 		getYelpData_list();
+		      },
+		      error: function() {
+		        // Do stuff on fail
+		        console.log("Yelp API request failed");
+		      }
+		   };
+		   $.ajax(settings);
+		}
+		getYelpData_list();
 
-// 		console.log('Location List '+self.locationList);
+		console.log('Location List '+self.locationList);
 
 
