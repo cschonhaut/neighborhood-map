@@ -140,7 +140,7 @@
 		//var ourMarker = google.maps.getMarker();
 		//google.maps.event.trigger(ourMarker, toggleBounce)
 		console.log(location);
-		getYelpData(location);
+		//getYelpData(location);
 		google.maps.event.trigger(location.marker, 'click');
 	}
 	var vm = new viewModel();
@@ -166,7 +166,7 @@
 		//Make sure infowindow is not already opened on this marker
 		if (infowindow.marker !=marker) {
 			infowindow.marker = marker;
-			infowindow.setContent('<div>' + marker.title + '</div>');
+			infowindow.setContent('<div><strong>' + marker.title + '</strong><br>' + marker.address + '<br>' + marker.phone + '</div>');
 			infowindow.open(map, marker);
 			//Make sure info clears if closed
 			infowindow.addListener('closeclick', function(){

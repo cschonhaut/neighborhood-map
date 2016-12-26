@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 
+
 body, html {
   width: 100%;
   height: 100%;
@@ -28,6 +29,10 @@ main {
 
 .sidebar-open {
   display: none;
+}
+
+.sidebar-list li{
+  cursor: pointer;
 }
 
 #map {
