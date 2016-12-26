@@ -140,6 +140,7 @@
 		//var ourMarker = google.maps.getMarker();
 		//google.maps.event.trigger(ourMarker, toggleBounce)
 		console.log(location);
+		getYelpData(location);
 		google.maps.event.trigger(location.marker, 'click');
 	}
 	var vm = new viewModel();
@@ -185,8 +186,8 @@ function nonce_generate() {
     return (Math.floor(Math.random() * 1e12).toString());
 };
 
-function getYelpData(){
-    var yelpID = item.yelpID();
+function getYelpData(location){
+    var yelpID = location.yelpID;
     var auth = {
              yelp_key: "L7ggInri9G0tCkmKmjf7aw",
 				yelp_token: "ZH_WIQdU26QTB3E1N0TCk75d1ww7qo_g",
@@ -194,17 +195,16 @@ function getYelpData(){
 				yelp_token_secret: "3AZO_Hj67qAp-zqXEuAOnDlIuFo",
     };
 
-    var yelp_url = "http://api.yelp.com/v2/business" + yelpID;
+    var yelp_url = "http://api.yelp.com/v2/business/" + yelpID;
 
     var parameters = {
-    oauth_consumer_key: yelp_key,
-    oauth_token: yelp_token,
+    oauth_consumer_key: auth.yelp_key,
+    oauth_token: auth.yelp_token,
     oauth_nonce: nonce_generate(),
     oauth_timestamp: Math.floor(Date.now()/1000),
     oauth_signature_method: 'HMAC-SHA1',
     oath_version: '1.0',
     callback: 'cb',
-    category_filter: 'bagels',
     // radius_filter: 16093.4, // 10 miles
     // term: 'food',
     // location: 'Gettysburg PA',
@@ -212,7 +212,7 @@ function getYelpData(){
     // limit: 1
 	};
 
-	var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
+	var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, auth.yelp_key_secret, auth.yelp_token_secret);
     parameters.oauth_signature = encodedSignature;
 
 	var settings = {
@@ -221,18 +221,17 @@ function getYelpData(){
 		      cache: true,
 		      dataType: 'jsonp',
 		      success: function(results) {
-		        // Do stuff with results
-		        // console.log(results);
+		        console.log(results);
 
-				if (results.businesses.length > 0) {
+				// if (results.businesses.length > 0) {
 
-	                  $.each(results.businesses, function(i, item) {
+	   //                $.each(results.businesses, function(i, item) {
 
-	                  		self.locationList.push({title: item.name, location: {lat: item.location.coordinate.latitude, lng: item.location.coordinate.longitude} });
+	   //                		self.locationList.push({title: item.name, location: {lat: item.location.coordinate.latitude, lng: item.location.coordinate.longitude} });
 
-	                  });
+	    //              });
 
-                }
+                //}
 
 
 		      },
@@ -243,8 +242,5 @@ function getYelpData(){
 		   };
 		   $.ajax(settings);
 		}
-		getYelpData_list();
-
-		console.log('Location List '+self.locationList);
-
+		//getYelpData(locations[0]);
 
