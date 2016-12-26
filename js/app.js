@@ -185,7 +185,7 @@ function nonce_generate() {
     return (Math.floor(Math.random() * 1e12).toString());
 };
 
-function getYelpData(item){
+function getYelpData(){
     var yelpID = item.yelpID();
     var auth = {
              yelp_key: "L7ggInri9G0tCkmKmjf7aw",
