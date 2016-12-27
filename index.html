@@ -27,8 +27,11 @@
 				<h3>Locations:</h3>
 				<ul class="sidebar-list"
 					data-bind="foreach: locationList" id="locationList">
-						<li data-bind="text: title, click: controlMarker"></li>
+						<li data-bind="text: title, click: controlMarker">
+						</li>
 				</ul>
+				<div id="location_details">
+				</div>
 			</div>
 
 			<div id="map"></div>
