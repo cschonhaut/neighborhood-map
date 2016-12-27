@@ -49,7 +49,7 @@
 }
 
 	$('.sidebar-open').click(function (e) {
-  	$('.sidebar-list').toggleClass('expand');
+  		$('.sidebar-list').toggleClass('expand');
 	});
 
 	var locations = [
@@ -133,6 +133,8 @@
 		locations.forEach(function(location) {
 			self.locationList.push(location);
 		});
+
+		self.search_query = ko.observable('');
 	}
 
 	// marker animation upon list click
@@ -145,8 +147,29 @@
 	}
 	var vm = new viewModel();
 	ko.applyBindings(vm);
+
+
+	vm.search_query.subscribe(search_list);
+
+
 	$( document ).ready(function(){
 	});
+
+
+
+	function search_list(value) {
+        vm.locationList.removeAll();
+
+        //console.log(value);
+
+        for(var x in locations) {
+          if(locations[x].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+          	console.log(locations[x]);
+            vm.locationList.push(locations[x]);
+          }
+        }
+      }
+
 
 	// marker animation upon marker click
 	function toggleBounce() {
@@ -227,7 +250,8 @@ function getYelpData(location){
 				 		  +'<img src="'+results.rating_img_url+'" alt="Star Rating"><br>'
 						  +'<img src="'+results.image_url+'" alt="'+results.name+'"><br>'
 						  +'<a href="tel:'+results.display_phone+'">'+results.display_phone+'</a><br>'
-						  +'<a href ="'+results.url+'">View on Yelp</a>';
+						  +'<a href ="'+results.url+'">View on Yelp</a>'
+						  +'<p>*Information Pulled from Yelp Business API</p>';
 
                   $("#location_details").empty().append(content);
 

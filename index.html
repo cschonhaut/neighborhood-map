@@ -21,7 +21,8 @@
 					</button>
 				</h3>
 	 			<form>
-			  		<input type="text" name="search">
+	 				<input placeholder="Search…" type="search" name="q" data-bind="value: search_query, valueUpdate: 'keyup'" autocomplete="off" >
+			  		<!--<input type="text" name="search">-->
 				</form>
 
 				<h3>Locations:</h3>
@@ -31,6 +32,7 @@
 						</li>
 				</ul>
 				<div id="location_details">
+
 				</div>
 			</div>
 
