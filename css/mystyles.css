@@ -1,11 +1,24 @@
 * {
   box-sizing: border-box;
+  font: sans-serif;
 }
 
+h3 {
+  font-weight: bold !important;
+  padding-top: 0em !important;
+  padding-bottom: 0em !important;
+  margin-top: 0em !important;
+  margin-bottom: 0em !important;
+  color: #103949 !important;
+}
 
 body, html {
   width: 100%;
   height: 100%;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  background-color: #a5cecd;
+  color: #103949;
 }
 
 main {
@@ -14,6 +27,7 @@ main {
   height: 100%;
   display: flex;
   flex-flow: row wrap;
+  font: sans-serif;
 }
 
 .sidebar,
@@ -37,6 +51,18 @@ main {
 
 #map {
   width: 75%;
+}
+
+img {
+  padding-bottom: 1rem;
+}
+
+a {
+  color: #00686b !important;
+}
+
+p {
+  font-size: 12px;
 }
 
 @media (max-width: 600px) {

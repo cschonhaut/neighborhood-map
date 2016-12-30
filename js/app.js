@@ -24,6 +24,11 @@
 				animation: google.maps.Animation.DROP,
 				id: i
 			});
+
+			removeMarker = function(marker) {
+				marker.setVisible(false);
+			}
+
 			marker.addListener('click', toggleBounce);
 			//Push the marker to the marker array
 			//markers.push(marker);
