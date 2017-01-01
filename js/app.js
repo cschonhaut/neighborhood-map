@@ -263,9 +263,8 @@ function getYelpData(location) {
     error: function() {
       // Error handling
       // ko html data binding?
-      $("#location_details").append('<p>Try again.</p>');
+      $("#location_details").append('<p>An error has occurred. Please try again.</p>');
     }
   };
   $.ajax(settings);
 }
-//getYelpData(locations[0]);
