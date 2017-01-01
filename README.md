@@ -3,8 +3,9 @@
 This project consists of a map of my neighborhood, in Gettysburg, PA. It has several points of interest, which are all my favorite places to eat and drink in town. Each pinpoint on the map has a pop up window of additional information, and the marker animates upon clicking. There is a search functionality that filters the list of locations. This app is responsive and is built using Knockout and separation of concerns.
 
 ##Usage
-* Visit the live site hosted here:
-* Or clone the repo here: https://github.com/cschonhaut/neighborhood-map
+* Visit the live site hosted here: https://cschonhaut.github.io/neighborhood-map/
+* Or download or clone the repository here: https://github.com/cschonhaut/neighborhood-map
+	* If you are downloading or cloning the repository to your machine, you should open up "index.html" in your browser of choice to launch the app. You must be connected to the internet.
 
 ##Languages / Tools Used
 * Knockout JS
@@ -26,7 +27,14 @@ https://classroom.udacity.com/nanodegrees/nd001/parts/00113454014/modules/4fd8d4
 
 ###Searchability
 
-Credit needed for the "Live Search with Knockout.js" article that assisted in my ability to create the search functionality. http://opensoul.org/2011/06/23/live-search-with-knockoutjs/
+Credit to the "Live Search with Knockout.js" article that assisted in my ability to create the search functionality. http://opensoul.org/2011/06/23/live-search-with-knockoutjs/
+
+###Separating Concerns
+Props to this forum chain https://discussions.udacity.com/t/deciding-what-goes-into-the-viewmodel/20118 that helped me better understand how to separate my code properly.
+
+###Yelp API
+Oauth taken from here: https://github.com/bettiolo/oauth-signature-js/blob/master/dist/oauth-signature.min.js
+
 
 ###Human Assistance
 My completing this project wouldn't be possible without the following people:
