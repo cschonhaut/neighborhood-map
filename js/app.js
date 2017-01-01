@@ -111,15 +111,10 @@ function initMap() {
       id: i
     });
 
-    removeMarker = function(marker) {
-      marker.setVisible(false);
-    }
-
     marker.addListener('click', toggleBounce);
     //Push the marker to the marker array
     //markers.push(marker);
     vm.locationList()[i].marker = marker;
-    //console.log('Location List: '+vm.locationList()[i].marker.title);
     //Extend boundaries of map if needed
     bounds.extend(marker.position);
     //Onclick event to open info window
@@ -143,7 +138,7 @@ $('.sidebar-open').click(function(e) {
   $('.sidebar-list').toggleClass('expand');
 });
 
-
+// View Model
 function viewModel() {
   var self = this;
   self.locationList = ko.observableArray();
@@ -153,6 +148,7 @@ function viewModel() {
   // Make the "search" text searchable!
   self.search_query = ko.observable('');
 
+  // Search functionality
   function search_list(value) {
     var stringToMatch = value.toLowerCase(); // Case insensitive search
     self.locationList.removeAll();
@@ -163,24 +159,18 @@ function viewModel() {
       var title = location.title.toLowerCase(); // Case insensitive search
       var match = title.indexOf(stringToMatch) >= 0; // Return true or false
 
-      //console.log(title, stringToMatch, match);
-
-      //console.log(location);
-
       marker.setVisible(match); // Toggle the marker's visibility
 
       if (match) {
-        //console.log(location);
         self.locationList.push(location);
       }
     }
   }
-  // Search functionality
   self.search_query.subscribe(search_list);
 
 }
 
-// marker animation upon list click
+// Marker animation upon list click
 function controlMarker(location) {
   //var ourMarker = google.maps.getMarker();
   //google.maps.event.trigger(ourMarker, toggleBounce)
@@ -191,24 +181,7 @@ function controlMarker(location) {
 var vm = new viewModel();
 ko.applyBindings(vm);
 
-// Search functionality
-// vm.search_query.subscribe(search_list);
-
-// $( document ).ready(function(){
-// });
-
-// function search_list(value) {
-//        vm.locationList.removeAll();
-
-//        for(var x in locations) {
-//          if(locations[x].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-//          	console.log(locations[x]);
-//            vm.locationList.push(locations[x]);
-//          }
-//        }
-//      }
-
-// marker animation upon marker click
+// Marker animation upon marker click
 function toggleBounce() {
   var self = this;
   if (self.getAnimation() !== null) {
