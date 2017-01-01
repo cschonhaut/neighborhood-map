@@ -55,6 +55,8 @@
   		$('.sidebar-list').toggleClass('expand');
 	});
 
+
+	// Model
 	// Hard-coded data for marker locations
 	var locations = [
 		{
@@ -122,6 +124,23 @@
 		});
 		// Make the "search" text searchable!
 		self.search_query = ko.observable('');
+
+		// Search functionality
+		self.search_query.subscribe(search_list);
+
+		$( document ).ready(function(){
+		});
+
+		function search_list(value) {
+	        self.locationList.removeAll();
+
+	        for(var x in locations) {
+	          if(locations[x].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+	          	console.log(locations[x]);
+	            self.locationList.push(locations[x]);
+	          }
+	        }
+	      }
 	}
 
 	// marker animation upon list click
@@ -135,21 +154,21 @@
 	ko.applyBindings(vm);
 
 	// Search functionality
-	vm.search_query.subscribe(search_list);
+	// vm.search_query.subscribe(search_list);
 
-	$( document ).ready(function(){
-	});
+	// $( document ).ready(function(){
+	// });
 
-	function search_list(value) {
-        vm.locationList.removeAll();
+	// function search_list(value) {
+ //        vm.locationList.removeAll();
 
-        for(var x in locations) {
-          if(locations[x].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-          	console.log(locations[x]);
-            vm.locationList.push(locations[x]);
-          }
-        }
-      }
+ //        for(var x in locations) {
+ //          if(locations[x].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+ //          	console.log(locations[x]);
+ //            vm.locationList.push(locations[x]);
+ //          }
+ //        }
+ //      }
 
 	// marker animation upon marker click
 	function toggleBounce() {
