@@ -120,6 +120,7 @@ function initMap() {
     //Onclick event to open info window
     marker.addListener('click', function() {
       populateInfoWindow(this, largeInfowindow);
+      getYelpData(location);
     });
   }
   map.fitBounds(bounds);
@@ -170,15 +171,11 @@ function viewModel() {
 
 }
 
-// Marker animation upon list click
-function controlMarker(location) {
-  //var ourMarker = google.maps.getMarker();
-  //google.maps.event.trigger(ourMarker, toggleBounce)
-  getYelpData(location);
-  google.maps.event.trigger(location.marker, 'click');
-}
-
 var vm = new viewModel();
+	// Marker animation upon list click
+	function controlMarker(location) {
+	  google.maps.event.trigger(location.marker, 'click');
+	}
 ko.applyBindings(vm);
 
 // Marker animation upon marker click
