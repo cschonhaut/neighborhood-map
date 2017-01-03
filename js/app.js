@@ -108,7 +108,8 @@ function initMap() {
       title: title,
       address: address,
       animation: google.maps.Animation.DROP,
-      id: i
+      id: i,
+      yelpID: vm.locationList()[i].yelpID
     });
 
     marker.addListener('click', toggleBounce);
@@ -120,7 +121,7 @@ function initMap() {
     //Onclick event to open info window
     marker.addListener('click', function() {
       populateInfoWindow(this, largeInfowindow);
-      getYelpData(location);
+      getYelpData(this.yelpID);
     });
   }
   map.fitBounds(bounds);
@@ -214,8 +215,8 @@ function nonce_generate() {
   return (Math.floor(Math.random() * 1e12).toString());
 };
 
-function getYelpData(location) {
-  var yelpID = location.yelpID;
+function getYelpData(yelpID) {
+  //var yelpID = location.yelpID;
   var auth = {
     yelp_key: "L7ggInri9G0tCkmKmjf7aw",
     yelp_token: "ZH_WIQdU26QTB3E1N0TCk75d1ww7qo_g",
