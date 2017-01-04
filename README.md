@@ -35,6 +35,11 @@ Props to this forum chain https://discussions.udacity.com/t/deciding-what-goes-i
 ###Yelp API
 Oauth taken from here: https://github.com/bettiolo/oauth-signature-js/blob/master/dist/oauth-signature.min.js
 
+###Error Handling
+Google onerror assistance via these sources:
+* https://discussions.udacity.com/t/handling-google-maps-in-async-and-fallback/34282
+* https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror
+
 
 ###Human Assistance
 My completing this project wouldn't be possible without the following people:
