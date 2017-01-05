@@ -114,7 +114,6 @@ function initMap() {
 
     marker.addListener('click', toggleBounce);
     //Push the marker to the marker array
-    //markers.push(marker);
     vm.locationList()[i].marker = marker;
     //Extend boundaries of map if needed
     bounds.extend(marker.position);
@@ -134,8 +133,6 @@ function initMap() {
   });
 }
 
-// http://knockoutjs.com/documentation/css-binding.html
-// http://knockoutjs.com/documentation/click-binding.html
 $('.sidebar-open').click(function(e) {
   $('.sidebar-list').toggleClass('expand');
 });
@@ -207,13 +204,13 @@ function populateInfoWindow(marker, infowindow) {
 }
 
 var googleError = function() {
-  alert('Google Maps is not currently available')
+  alert('Google Maps is not currently available');
 };
 
 // Yelp Functionality
 function nonce_generate() {
   return (Math.floor(Math.random() * 1e12).toString());
-};
+}
 
 function getYelpData(yelpID) {
   //var yelpID = location.yelpID;
@@ -254,13 +251,11 @@ function getYelpData(yelpID) {
         '<a href ="' + results.url + '">View on Yelp</a>' +
         '<p>*Information Pulled from Yelp Business API</p>';
 
-      // ko html data binding?
       $("#location_details").empty().append(content);
 
     },
     error: function() {
       // Error handling
-      // ko html data binding?
       $("#location_details").append('<p>An error has occurred. Please try again.</p>');
     }
   };
