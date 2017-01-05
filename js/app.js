@@ -167,6 +167,11 @@ function viewModel() {
   }
   self.search_query.subscribe(search_list);
 
+
+
+  self.location_details = ko.observable('');
+
+
 }
 
 var vm = new viewModel();
@@ -185,7 +190,7 @@ function toggleBounce() {
     self.setAnimation(google.maps.Animation.BOUNCE);
     setTimeout(function() {
       self.setAnimation(null);
-    }, 1500);
+    }, 1400);
   }
 }
 
@@ -244,16 +249,14 @@ function getYelpData(yelpID) {
     success: function(results) {
 
       // Concatination for Yelp API data
-      content = '<h3>' + results.name + '</h3><br>' +
+      vm.location_details('<h3>' + results.name + '</h3><br>' +
         '<img src="' + results.rating_img_url + '" alt="Star Rating"><br>' +
         '<img src="' + results.image_url + '" alt="' + results.name + '"><br>' +
         '<a href="tel:' + results.display_phone + '">' + results.display_phone + '</a><br>' +
         '<a href ="' + results.url + '">View on Yelp</a>' +
-        '<p>*Information Pulled from Yelp Business API</p>';
-
-      $("#location_details").empty().append(content);
-
+        '<p>*Information Pulled from Yelp Business API</p>');
     },
+
     error: function() {
       // Error handling
       $("#location_details").append('<p>An error has occurred. Please try again.</p>');
